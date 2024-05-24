@@ -35,8 +35,8 @@ cp /usr/bin/qemu-arm-static ${DESTPATH}/usr/bin
 
 chroot ${DESTPATH} /debootstrap/debootstrap --second-stage
 
-echo "deb http://deb.debian.org/debian bookworm main contrib non-free" > ${DESTPATH}/etc/apt/sources.list
-echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free" >> ${DESTPATH}/etc/apt/sources.list
+echo "deb http://deb.debian.org/debian bookworm main contrib non-free-firmware" > ${DESTPATH}/etc/apt/sources.list
+echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free-firmware" >> ${DESTPATH}/etc/apt/sources.list
 
 chroot ${DESTPATH} apt update
 
@@ -89,17 +89,19 @@ echo -en "gsoc\ngsoc\n" | passwd root
 EOF
 
 cat << EOF | chroot ${DESTPATH} /bin/bash
-cd
-rm -fr ESPHamClock
-curl -O https://www.clearskyinstitute.com/ham/HamClock/ESPHamClock.zip
-unzip ESPHamClock.zip
-cd ESPHamClock
-make -j 4 hamclock-800x480
-make install
-cd ..
-rm -Rf ESPHamClock
-rm ESPHamClock.zip
+adduser -m -g wheel,tty,uucp -s /bin/bash hamclock
+echo -en "hamclock\nhamclock\n" | passwd hamclock
+echo "exec /usr/bin/openbox-session" > ${DESTPATH}/home/hamclock/.xinitrc
 EOF
 
+curl -o ${DESTPATH}/ESPHamClock.tgz https://www.clearskyinstitute.com/ham/HamClock/ESPHamClock.tgz
+tar -xzf ${DESTPATH}/ESPHamClock.tgz -C ${DESTPATH}
+cat << EOF | chroot ${DESTPATH} /bin/bash
+cd /ESPHamClock
+make -j 4 hamclock-800x480
+make install
+EOF
+rm -Rf ${DESTPATH}/ESPHamClock
+rm ${DESTPATH}/ESPHamClock.tgz
 
 rm ${DESTPATH}/usr/bin/qemu-arm-static
