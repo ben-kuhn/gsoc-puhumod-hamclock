@@ -11,26 +11,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ![GSOC screenshot](images/gsoc_puhu.jpg)
 
-This mod requires Xiegu GSOC firmware update image v1.3. G90 firmware should not
- be greater than v1.78b01
+Since Xiegu seems to have abandoned the GSOC, and I no longer own my G90, this
+fork was created to use the GSOC as a Ham Clock in my shack.  If you have a GSOC
+laying around a Ham Clock is a great use for it.
 
-Before moving on please visit those repositories: 
-
-* [https://github.com/mdubinko/gsoc-contrib](https://github.com/mdubinko/gsoc-contrib)
-* [https://github.com/zeroping/xiegu-g90-headprotocol/](https://github.com/zeroping/xiegu-g90-headprotocol/)
-
-All informations regarding SD card images, GSOC hardware, jailbreaking, 
-head <-> panel protocol are already there. There is no need to duplicate that 
-knowledge and they require recognition as it would not be possible to start this 
-project without them.
-
-| Feature  | Description | Link |
-|:--------:|:------------|-----:|
-| USB boot | Procedure for using USB sticks instead of SD card | [DONE](usb_boot/)|
-| SD card boot | Standard SD card boot | [DONE](sdcard_boot/)|
-| Debian | Debian 11 for GSOC Xiegu | [DONE](debian/) |
-| Release | Ready to use binary images  | WIP |
-| Bluetooth | Bluetooth support  | WIP |
-| Native CAT| Native cat support over Wifi/BT  | WIP |
+This mod requires Xiegu GSOC firmware update image v1.3.
 
 73!

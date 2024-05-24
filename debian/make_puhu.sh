@@ -29,14 +29,14 @@ if [ ! -f /usr/sbin/update-binfmts ]; then
     exit
 fi
 
-debootstrap --no-check-gpg --arch=armhf --include=ssh --foreign bullseye ${DESTPATH} ftp://ftp.ca.debian.org/debian
+debootstrap --no-check-gpg --arch=armhf --include=ssh --foreign bookworm ${DESTPATH} ftp://ftp.ca.debian.org/debian
 
 cp /usr/bin/qemu-arm-static ${DESTPATH}/usr/bin
 
 chroot ${DESTPATH} /debootstrap/debootstrap --second-stage
 
-echo "deb http://deb.debian.org/debian bullseye main contrib non-free" > ${DESTPATH}/etc/apt/sources.list
-echo "deb http://deb.debian.org/debian bullseye-backports main contrib non-free" >> ${DESTPATH}/etc/apt/sources.list
+echo "deb http://deb.debian.org/debian bookworm main contrib non-free" > ${DESTPATH}/etc/apt/sources.list
+echo "deb http://deb.debian.org/debian bookworm-backports main contrib non-free" >> ${DESTPATH}/etc/apt/sources.list
 
 chroot ${DESTPATH} apt update
 
@@ -49,7 +49,7 @@ export DEBIAN_FRONTEND=noninteractive
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-apt-get -y install mc firmware-realtek wpasupplicant xorg openbox icewm feh locales alsa-utils libqt5multimedia5 libqt5bluetooth5 libqt5sql5 libatomic1 libqt5serialport5 libliquid-dev libcodec2-0.9
+apt-get -y install firmware-realtek wpasupplicant xorg openbox icewm feh locales curl make g++ libx11-dev libgpiod-dev
 locale-gen en_US.UTF-8
 dpkg-reconfigure locales
 EOF
@@ -78,10 +78,6 @@ echo Mounting local GSOC storage
 mount /dev/mmcblk1p2 /mnt/
 echo Modules
 cp -r /mnt/lib/modules /lib
-echo Xiegu GSOC QT5 app
-cp -r /mnt/usr/local/gsoc /usr/local
-echo Alsa config
-cp /mnt/etc/asound.conf /etc/
 echo Now please reboot
 
 " > ${DESTPATH}/root/postinstall.sh
@@ -91,5 +87,19 @@ chmod +x ${DESTPATH}/root/*.sh
 cat << EOF | chroot ${DESTPATH} /bin/bash
 echo -en "gsoc\ngsoc\n" | passwd root
 EOF
+
+cat << EOF | chroot ${DESTPATH} /bin/bash
+cd
+rm -fr ESPHamClock
+curl -O https://www.clearskyinstitute.com/ham/HamClock/ESPHamClock.zip
+unzip ESPHamClock.zip
+cd ESPHamClock
+make -j 4 hamclock-800x480
+make install
+cd ..
+rm -Rf ESPHamClock
+rm ESPHamClock.zip
+EOF
+
 
 rm ${DESTPATH}/usr/bin/qemu-arm-static
