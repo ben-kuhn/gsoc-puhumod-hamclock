@@ -1,6 +1,8 @@
-# gsoc-puhumod
+# gsoc-puhumod-hamclock
 
 Xiegu GSOC Debian hack a.k.a **puhuMod**. puhu originated from "**путін хуй**".
+
+This is a fork of the original [GSOC PuhuMod](https://github.com/d3cker/gsoc-puhumod) project designed for use as a HamClock.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
@@ -9,7 +11,7 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-![GSOC screenshot](images/gsoc_puhu.jpg)
+![GSOC screenshot](images/gsoc_hamclock.jpg)
 
 Since Xiegu seems to have abandoned the GSOC, and I no longer own my G90, this
 fork was created to use the GSOC as a Ham Clock in my shack.  If you have a GSOC
@@ -17,7 +19,7 @@ laying around a Ham Clock is a great use for it.
 
 This mod requires Xiegu GSOC firmware update image v1.3.
 
-= Getting Started
+# Getting Started
 
 ## 1.  Prepare your boot media.  
 Follow the instructions for [SD Card](sdcard_boot/README.md) or [USB](usb_boot/README.md)
@@ -26,7 +28,7 @@ Follow the instructions for [SD Card](sdcard_boot/README.md) or [USB](usb_boot/R
 
 ## 3. First run
 
-The Default user is 'hamclock' with a password of 'hamclock.'  The default root password is set to `gsoc`.
+The Default user is `hamclock` with a password of `hamclock.`  The default root password is set to `gsoc`.  CHANGE THEM!
 
 ### Important
 The GSOC will run a script to install kernel modules from the GSOC's main storage and automatically reboot on the first boot.

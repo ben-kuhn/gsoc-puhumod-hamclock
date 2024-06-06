@@ -27,7 +27,7 @@ This automated process is responsible for:
 
 * creating base system
 * adding extra repositories
-* installing Xorg, IceWM , OpenBox (preffered) and libraries required by GSOC app
+* installing Xorg, OpenBox, HamClock, and required libraries
 * creating posinstall and network scripts
 
 ## 3. Install and boot
@@ -39,7 +39,7 @@ to second (empty) partition. For example:
 
 ```
 mount /dev/sdXXX2 /mnt/
-cp -r /somepath/* /mnt/
+cp -Rfa /somepath/* /mnt/
 umount /mnt
 ```
 
