@@ -87,9 +87,7 @@ echo "
 hsetroot /usr/share/wallpapers/openbox.jpeg &
 
 # Disable Screensaver
-xset -s off
-xset -s noblank
-xset -dpms
+xset -dpms s off
 
 # A panel for good times
 fspanel &
@@ -125,9 +123,6 @@ echo '    <application title="HamClock">
 </applications>
 
 </openbox_config>' >> ${DESTPATH}/etc/xdg/openbox/rc.xml
-
-echo Updating Permissions
-chown -Rf 1000:1000 ${DESTPATH}/home/hamclock/*
 
 echo Configuring first-boot script
 echo "#!/bin/bash
@@ -168,7 +163,14 @@ cd /ESPHamClock
 make -j 4 hamclock-800x480
 make install
 EOF
+
+echo Updating Permissions
+chown -Rf 1000:1000 ${DESTPATH}/home/hamclock
+
+echo Cleaning Up
 rm -Rf ${DESTPATH}/ESPHamClock
 rm ${DESTPATH}/ESPHamClock.tgz
 
 rm ${DESTPATH}/usr/bin/qemu-arm-static
+
+echo Build complete
