@@ -4,6 +4,8 @@ The purpose of this document is to preapare SD card for new Debian system.
 
 ## 1. Prepare SD card.
 
+Fetch an image here:  [https://radioddity.s3.amazonaws.com/Xiegu%20GSOC%20Firmware%20V1.3_20200118.zip](https://radioddity.s3.amazonaws.com/Xiegu%20GSOC%20Firmware%20V1.3_20200118.zip)
+
 Please follow official(?) firmware upgrade procedure and burn image 
 (sdcard.img) to your SD card. For example: 
 ```
