@@ -48,6 +48,7 @@ chroot ${DESTPATH} apt update
 
 echo Configuring system
 echo "gsoc-puhu" > ${DESTPATH}/etc/hostname
+echo "127.0.0.1 gsoc-puhu" >> ${DESTPATH}/etc/hosts
 
 echo "/dev/root     /               ext4    errors=remount-ro 0       1" > ${DESTPATH}/etc/fstab
 
