@@ -58,7 +58,7 @@ export DEBIAN_FRONTEND=noninteractive
 export LANGUAGE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-apt-get -y install firmware-realtek wpasupplicant xorg openbox fspanel sudo locales curl make g++ libx11-dev libgpiod-dev network-manager nm-tray lightdm
+apt-get -y install firmware-realtek wpasupplicant xorg openbox fspanel sudo locales curl make g++ libx11-dev libgpiod-dev network-manager nm-tray lightdm unzip
 echo "en_US.UTF-8 UTF-8 >> /etc/locale.gen
 locale-gen
 EOF
